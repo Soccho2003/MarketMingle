@@ -1,0 +1,58 @@
+/* Users List Section */
+#users-list {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+#users-list h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #f85f6a;
+    color: white;
+}
+
+a {
+    color: #ff5733;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Add User Button Styling */
+.add-user-btn {
+    background-color: #ff5733;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.add-user-btn:hover {
+    background-color: #e14e2b;
+}
