@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
-    <?php include('includes/header.php'); ?>
+    <?php include('../includes/header.php'); ?>
 
    
     <section id="hero">
