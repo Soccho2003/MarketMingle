@@ -7,7 +7,7 @@
         <input type="text" id="product-name" name="product-name" required placeholder="Enter product name">
 
         <label for="category">Category:</label>
-        <input type="text" id="category" name="category" required placeholder="Enter category">
+        <input type="text" id="category" name="category" required placeholder="Enter category"> 
 
         <label for="price">Price:</label>
         <input type="text" id="price" name="price" required placeholder="Enter product price">
@@ -18,5 +18,5 @@
         <button type="submit" class="save-btn">Save Product</button>
     </form>
 </section>
-
-<?php include('includes/footer.php'); ?>
+ <?php // includinh header file
+include('includes/footer.php'); ?>
