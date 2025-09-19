@@ -2,7 +2,7 @@
 $host = 'localhost';         // Your MySQL server (localhost if running locally)
 $username = 'root';          // Default username for XAMPP is 'root'
 $password = '';              // Default password for XAMPP is an empty string
-$dbname = 'marketmingle'; // Your database name
+$dbname = 'marketmingle'; 
 
 try {
     // Create a PDO instance to connect to the database
