@@ -9,7 +9,7 @@
 <body>
     <?php include('includes/header.php'); ?>
     
-    <!-- Admin Dashboard Content -->
+    
     <section id="admin-dashboard">
         <div class="dashboard-container">
             <aside id="sidebar">
