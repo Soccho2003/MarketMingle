@@ -20,7 +20,7 @@
                         <li><a href="manageproduct.php">Manage Products</a></li> 
                         <li><a href="orders_list.php">Manage Orders</a></li> <!-- Link to Orders -->
                         <li><a href="manage_users.php">Manage Users</a></li>
-                        <li><a href="#settings">Settings</a></li>
+                        <li><a href="settings.php">Settings</a></li>
                     </ul>
                 </nav>
             </aside>
