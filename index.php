@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
-    <?php include('../includes/header.php'); ?>
+    <?php include('header.php'); ?>
 
    
     <section id="hero">
@@ -26,24 +26,24 @@
             <div class="product-card">
                 <img src="giant_204521.jpg" alt="Product 1">
                 <h3>Product 1</h3>
-                <p>BDT 200.00</p>
-                <a href="product.php?id=1" class="btn-view-details">View Details</a>
+                <p>BDT 20000.00</p>
+                <a href="hq720.jpg" class="btn-view-details">View Details</a>
             </div>
             <div class="product-card">
-                <img src="Gray-Nicolls-Astro-800-Cricket-Bat-Senior-2.webp" alt="Product 2">
+                <img src="hq720.jpg" alt="Product 2">
                 <h3>Product 2</h3>
-                <p>BDT 250.00</p>
-                <a href="product.php?id=2" class="btn-view-details">View Details</a>
+                <p>BDT 25000.00</p>
+                <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DNoZsPIZ8GVY&psig=AOvVaw1hosxZinZNuQLX7fZkEkpe&ust=1757928507353000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCPiB4pP4148DFQAAAAAdAAAAABAE" class="btn-view-details">View Details</a>
             </div>
             <div class="product-card">
-                <img src="hq720.jpg" alt="Product 3">
+                <img src="Gray-Nicolls-Astro-800-Cricket-Bat-Senior-2.webp" alt="Product 3">
                 <h3>Product 3</h3>
-                <p>BST300.00</p>
-                <a href="product.php?id=3" class="btn-view-details">View Details</a>
+                <p>BST3000.00</p>
+                <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fsturdysports.com.au%2Fproducts%2Fgray-nicolls-astro-800-short-handle-cricket-bat%3Fsrsltid%3DAfmBOoomMf80Dp-ViS9LcsFPaAJqTv2MH5Fk-9EJ-nBO9OQTtZAFqKC9&psig=AOvVaw1j-opLGr-2W94sYhHPNwMa&ust=1757928674146000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCODwl-b4148DFQAAAAAdAAAAABAE" class="btn-view-details">View Details</a>
             </div>
         </div>
     </section>
 
-    <?php include('footer.php'); ?>
+    <?php include('includes/footer.php'); ?>
 </body>
 </html>

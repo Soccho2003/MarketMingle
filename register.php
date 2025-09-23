@@ -26,6 +26,14 @@
             <label for="confirm-password">Confirm Password:</label>
             <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm your password">
             
+            <!-- Role Selection -->
+            <label for="role">Register As:</label>
+            <select id="role" name="role" required>
+                <option value="customer">Customer</option>
+                <option value="seller">Seller</option>
+                <option value="admin">Admin</option>
+            </select>
+
             <button type="submit" class="register-btn">Register</button>
             
             <div class="login-link">

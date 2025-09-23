@@ -1,4 +1,6 @@
-/* Reset & Base */
+/* ==============================
+   Global Reset & Base Styles
+   ============================== */
 * {
     margin: 0;
     padding: 0;
@@ -12,52 +14,10 @@ body {
     line-height: 1.6;
 }
 
-/* Header */
+/* ==============================
+   Header
+   ============================== */
 header {
-<<<<<<< Updated upstream
-    background-color: #ff5733;
-    color: white;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header .logo a {
-    font-size: 28px;
-    color: white;
-    text-decoration: none;
-}
-
-header .search-bar input {
-    padding: 10px;
-    width: 250px;
-    border-radius: 5px;
-    border: none;
-}
-
-header .search-bar button {
-    padding: 10px 20px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-header .search-bar button:hover {
-    background-color: #e14e2b;
-}
-
-header .nav-links a {
-    color: white;
-    margin-left: 20px;
-    text-decoration: none;
-}
-
-header .nav-links a:hover {
-    text-decoration: underline;
-=======
     background: linear-gradient(90deg, #ff5733, #ff8d72);
     color: #fff;
     padding: 15px 50px;
@@ -70,107 +30,89 @@ header .nav-links a:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-header a {
+#logo a {
+    font-size: 22px;
+    font-weight: 700;
     color: #fff;
     text-decoration: none;
-    margin: 0 20px;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
     font-weight: 600;
     font-size: 16px;
     transition: color 0.3s ease;
 }
 
-header a:hover {
+nav ul li a:hover {
     color: #ffeaa7;
->>>>>>> Stashed changes
 }
 
-/* Hero Section */
+/* ==============================
+   Hero Section
+   ============================== */
 #hero {
-<<<<<<< Updated upstream
-    background: url('assets/images/hero-bg.jpg') no-repeat center center/cover;
-    color: #CF9286;
-    text-align: center;
-    padding: 80px 0;
-}
-
-#hero .hero-content h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-}
-
-#hero .cta-btn {
-    padding: 15px 30px;
-    background-color: #ff5733;
-    color: white;
-=======
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), /* dark overlay */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
                 url("premium_photo-1681488262364-8aeb1b6aac56.jpeg") center/cover no-repeat;
-    color: rgb(241, 237, 237);
+    color: white;
     text-align: center;
     padding: 140px 20px;
     position: relative;
-    min-height: 500px; /* Ensure enough height like Alibaba */
-}
-
-#hero .hero-content {
-    position: relative;
-    z-index: 2;
+    overflow: hidden;
+    min-height: 500px;
 }
 
 #hero h1 {
-    font-size: 55px;
-    font-weight: 800;
+    font-size: 56px;
     margin-bottom: 20px;
+    font-weight: 800;
+    animation: floatUp 1.5s ease forwards;
 }
 
 #hero p {
-    font-size: 20px;
+    font-size: 22px;
     margin-bottom: 40px;
+    opacity: 0.9;
 }
 
-#hero .cta-btn {
+.cta-btn {
+    padding: 15px 40px;
     background: white;
     color: #ff5733;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 15px 40px;
-    border-radius: 50px;
->>>>>>> Stashed changes
     border: none;
+    border-radius: 40px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-<<<<<<< Updated upstream
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
 }
 
-#hero .cta-btn:hover {
-    background-color: #e14e2b;
-=======
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+.cta-btn:hover {
+    background: #ffeaa7;
+    color: #c0392b;
+    transform: translateY(-5px);
 }
 
-#hero .cta-btn:hover {
-    background: #ff5733;
-    color: white;
->>>>>>> Stashed changes
-}
-
-
-/* Featured Products */
+/* ==============================
+   Featured Products
+   ============================== */
 #featured-products {
-<<<<<<< Updated upstream
-    padding: 50px 0;
-=======
     padding: 80px 40px;
->>>>>>> Stashed changes
     text-align: center;
     background: linear-gradient(180deg, #fff, #f9f9f9);
 }
 
 #featured-products h2 {
     font-size: 36px;
-<<<<<<< Updated upstream
-    margin-bottom: 30px;
-=======
     margin-bottom: 50px;
     color: #2d3436;
     font-weight: 700;
@@ -185,7 +127,6 @@ header a:hover {
     display: block;
     margin: 15px auto 0;
     border-radius: 2px;
->>>>>>> Stashed changes
 }
 
 .product-grid {
@@ -195,7 +136,7 @@ header a:hover {
 }
 
 .product-card {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     overflow: hidden;
@@ -249,7 +190,7 @@ header a:hover {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* Button */
+/* Product Button */
 .btn-view-details {
     display: inline-block;
     margin: 10px 0 20px;
@@ -267,7 +208,9 @@ header a:hover {
     transform: scale(1.05);
 }
 
-/* Footer */
+/* ==============================
+   Footer
+   ============================== */
 footer {
     background: #2d3436;
     color: #fff;
@@ -288,15 +231,17 @@ footer a:hover {
     color: #ffeaa7;
 }
 
-<<<<<<< Updated upstream
-=======
-/* Animations */
+/* ==============================
+   Animations
+   ============================== */
 @keyframes floatUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive */
+/* ==============================
+   Responsive
+   ============================== */
 @media (max-width: 768px) {
     #hero h1 {
         font-size: 36px;
@@ -309,4 +254,3 @@ footer a:hover {
         padding: 12px 25px;
     }
 }
->>>>>>> Stashed changes

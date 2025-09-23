@@ -1,11 +1,14 @@
 <?php
-$servername = "localhost";
-$username   = "root";   // default XAMPP username
-$password   = "";       // default password empty
-$dbname     = "market_mingle"; // change this
+$host = 'localhost';
+$username = 'root';    // default for XAMPP
+$password = '';        // default is empty
+$dbname = 'marketmingle';  // your database name
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+try {
+    $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8";
+    $pdo = new PDO($dsn, $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
 }
 ?>
