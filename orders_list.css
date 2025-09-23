@@ -1,57 +1,79 @@
-/* Orders List Section */
-#orders-list {
-    padding: 50px 20px;
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Orders Section */
+#manage-orders {
+    padding: 40px 0;
+    background-color: #fff;
+}
+
+#manage-orders h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
     text-align: center;
 }
 
-#orders-list h2 {
-    font-size: 36px;
-    margin-bottom: 30px;
-    color: #333;
-    font-weight: 600;
-}
-
-/* Table Styling */
+/* Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 15px;
+table th, table td {
+    padding: 12px;
     text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
-th {
-    background-color: #f85f6a;
-    color: white;
+table th {
+    background-color: #f2f2f2;
 }
 
-a {
-    color: #ff5733;
-    text-decoration: none;
+table tr:hover {
+    background-color: #f9f9f9;
 }
 
-a:hover {
-    text-decoration: underline;
+table td {
+    font-size: 16px;
 }
 
-/* Actions Button Styling */
-.view-btn, .cancel-btn {
+/* Status Dropdown */
+select {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Buttons */
+.btn-edit, .btn-delete {
+    padding: 6px 12px;
     background-color: #ff5733;
     color: white;
-    padding: 5px 10px;
-    font-size: 14px;
-    border: none;
+    text-decoration: none;
     border-radius: 5px;
-    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.view-btn:hover, .cancel-btn:hover {
-    background-color: #e14e2b;
+.btn-edit:hover, .btn-delete:hover {
+    background-color: #c0392b;
 }

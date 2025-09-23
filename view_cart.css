@@ -1,0 +1,99 @@
+/* Reset & Base Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+/* Container Styling */
+#cart {
+    width: 80%;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 30px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th,
+table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f1f1f1;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+table td {
+    font-size: 14px;
+}
+
+table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Total Price Section */
+.total {
+    text-align: right;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-top: 20px;
+}
+
+/* Button Styling */
+button.btn {
+    background-color: #ff5733;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+button.btn:hover {
+    background-color: #c0392b;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    #cart {
+        width: 90%;
+    }
+
+    table th, table td {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    button.btn {
+        font-size: 16px;
+        padding: 10px 25px;
+    }
+}
