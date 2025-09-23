@@ -1,42 +1,51 @@
+<!-- sellerdashboard.php -->
 <?php
-// Include the database connection
 include('db.php');
+
+$stmt = $pdo->query("SELECT * FROM products WHERE seller_id = {$_SESSION['user_id']}");
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
+<!doctype html>
+<html>
 <head>
-    <!-- Link to the products list CSS -->
-    <link rel="stylesheet" href="products_list.css">  
+    <meta charset="utf-8">
+    <title>Seller Dashboard</title>
+    <link rel="stylesheet" href="sellerdash.css">
 </head>
+<body>
+    <h1>Seller Dashboard</h1>
+    <a class="btn" href="addproduct.php">+ Add Product</a>
 
-<section id="products-list">
-    <h2>Manage Products</h2>
-    <table>
-        <thead>
+    <!-- Products Section -->
+    <div class="card">
+        <h2>Your Products</h2>
+        <table>
             <tr>
-                <th>Product Name</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Actions</th>
+                <th>ID</th><th>Title</th><th>Price</th><th>Stock</th><th>Description</th><th>Image</th><th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
             <?php
-            
-            $stmt = $pdo->query("SELECT * FROM products");
-            while ($product = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<tr>
-                        <td>{$product['name']}</td>
-                        <td>{$product['category']}</td>
-                        <td>{$product['price']}</td>
-                        <td>
-                            <a href='edit_product.php?id={$product['id']}'>Edit</a> | 
-                            <a href='delete_product.php?id={$product['id']}'>Delete</a>
-                        </td>
-                    </tr>";
+            if ($products) {
+                foreach ($products as $p) {
+                    echo "<tr>
+                            <td>{$p['id']}</td>
+                            <td>{$p['title']}</td>
+                            <td>{$p['price']}</td>
+                            <td>{$p['stock']}</td>
+                            <td>{$p['description']}</td>
+                            <td><img src='{$p['image']}' alt='{$p['title']}' width='100'></td>
+                            <td>
+                                <a class='btn' href='editproduct.php?id={$p['id']}'>Edit</a>
+                                <a class='btn btn-red' href='deleteproduct.php?id={$p['id']}'>Delete</a>
+                            </td>
+                        </tr>";
+                }
+            } else {
+                echo "<tr><td colspan='7'>No products available</td></tr>";
             }
             ?>
-        </tbody>
-    </table>
-</section>
+        </table>
+    </div>
 
-<?php include('includes/footer.php'); ?>
+</body>
+</html>

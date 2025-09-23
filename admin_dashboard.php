@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="admin_dashboard.css"> 
 </head>
 <body>
-    <?php include('includes/header.php'); ?>
+    <?php include('header.php'); ?>
     
     
     <section id="admin-dashboard">
@@ -17,7 +17,7 @@
                 <nav class="sidebar-nav">
                     <ul>
                         <li><a href="#dashboard">Dashboard</a></li>
-                        <li><a href="products_list.php">Manage Products</a></li> 
+                        <li><a href="manageproduct.php">Manage Products</a></li> 
                         <li><a href="orders_list.php">Manage Orders</a></li> <!-- Link to Orders -->
                         <li><a href="users_list.php">Manage Users</a></li>
                         <li><a href="#settings">Settings</a></li>
@@ -30,7 +30,7 @@
                     <h2>Welcome, Admin!</h2>
                     <div class="dashboard-cards">
                         
-                        <div class="card" onclick="window.location.href='products_list.php'">
+                        <div class="card" onclick="window.location.href='manageproduct.php'">
                             <h4>Total Products</h4>
                             <p>150</p>
                         </div>
@@ -51,6 +51,6 @@
         </div>
     </section>
 
-    <?php include('includes/footer.php'); ?>
+    <?php include('footer.php'); ?>
 </body>
 </html>

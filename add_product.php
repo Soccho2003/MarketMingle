@@ -1,22 +1,56 @@
-<?php include('includes/header.php'); ?>
+<?php
+include "db.php";  // Include the database connection
 
-<section id="add-product">
-    <h2>Add New Product</h2>
-    <form action="add_product_action.php" method="POST">
-        <label for="product-name">Product Name:</label>
-        <input type="text" id="product-name" name="product-name" required placeholder="Enter product name">
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get product details from the form
+    $title = $_POST['title'];
+    $price = $_POST['price'];
+    $stock = $_POST['stock'];
+    $desc  = $_POST['description'];
 
-        <label for="category">Category:</label>
-        <input type="text" id="category" name="category" required placeholder="Enter category"> 
+    // Check if an image has been uploaded
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+        // Get the image details
+        $imageTmpName = $_FILES['image']['tmp_name'];
+        $imageData = file_get_contents($imageTmpName);  // Read image content as binary data
 
-        <label for="price">Price:</label>
-        <input type="text" id="price" name="price" required placeholder="Enter product price">
+        // Insert product details into the database, including the image as BLOB
+        $sql = "INSERT INTO products (title, price, stock, description, image) 
+                VALUES (?, ?, ?, ?, ?)";
 
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required placeholder="Enter product description"></textarea>
+        // Prepare the statement
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$title, $price, $stock, $desc, $imageData]);
 
-        <button type="submit" class="save-btn">Save Product</button>
-    </form>
-</section>
- <?php // includinh header file
-include('includes/footer.php'); ?>
+        echo "<script>alert('Product Added Successfully');window.location='seller_dashboard.php';</script>";
+    } else {
+        echo "Please upload an image.";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product - Market Mingle</title>
+</head>
+<body>
+    <div class="card">
+        <h2>Add Product</h2>
+        <form method="post" enctype="multipart/form-data"> <!-- Added enctype for file uploads -->
+            <input type="text" name="title" placeholder="Product Title" required>
+            <input type="number" step="0.01" name="price" placeholder="Price (BDT)" required>
+            <input type="number" name="stock" placeholder="Stock Quantity" required>
+            <textarea name="description" placeholder="Description" required></textarea>
+            
+            <!-- Product Image Upload -->
+            <input type="file" name="image" accept="image/*" required>  <!-- Image input field -->
+            
+            <button type="submit">Add Product</button>
+        </form>
+        <a href="sellerdashboard.php"> << Back to Dashboard</a>
+    </div>
+</body>
+</html>

@@ -1,42 +1,31 @@
 <?php
-include('db.php'); // database connection
+include('db.php');
 
+// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name     = $_POST['name'];
-    $email    = $_POST['email'];
-    $password = $_POST['password'];
-    $confirm  = $_POST['confirm-password'];
-    $role     = $_POST['role']; // admin, seller, customer
+    $name            = $_POST['name'];
+    $email           = $_POST['email'];
+    $password        = $_POST['password'];
+    $confirmPassword = $_POST['confirm-password'];
+    $role            = $_POST['role'];  // Get the selected role
 
-    // Password check
-    if ($password !== $confirm) {
-        echo "<script>alert('Passwords do not match!'); window.location.href='register.php';</script>";
+    // Check if passwords match
+    if ($password !== $confirmPassword) {
+        echo "<script>alert('Passwords do not match.'); window.location.href='register.php';</script>";
         exit();
     }
 
-    // Email validation
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "<script>alert('Invalid email format!'); window.location.href='register.php';</script>";
-        exit();
-    }
+    // Hash the password for security
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
+    // Insert the user into the database with selected role
     try {
-        // Insert into database (backticks to avoid reserved keyword issue)
-        $sql = "INSERT INTO `users` (`name`, `email`, `password`, `role`) 
-                VALUES (:name, :email, :password, :role)";
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->execute([
-            ':name'     => $name,
-            ':email'    => $email,
-            ':password' => $password,  // ⚠️ Plain text since you don’t want hashing
-            ':role'     => $role
-        ]);
+        $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$name, $email, $hashedPassword, $role]);  // Use the selected role
 
         echo "<script>alert('Registration successful! Please login.'); window.location.href='login.php';</script>";
-
     } catch (PDOException $e) {
-        echo "DB Error: " . $e->getMessage();
+        echo "Error: " . $e->getMessage();
     }
 }
 ?>
