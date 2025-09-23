@@ -19,11 +19,16 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (isset($_GET['delete_id'])) {
     $delete_id = $_GET['delete_id'];
 
-    // Prepare delete query
-    $stmt = $pdo->prepare("DELETE FROM products WHERE id = ?");
-    $stmt->execute([$delete_id]);
+    try {
+        // Prepare delete query
+        $stmt = $pdo->prepare("DELETE FROM products WHERE id = ?");
+        $stmt->execute([$delete_id]);
 
-    echo "<script>alert('Product deleted successfully!'); window.location='manage_products.php';</script>";
+        // Redirect with success message
+        echo "<script>alert('Product deleted successfully!'); window.location='manage_products.php';</script>";
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
 }
 ?>
 
@@ -74,8 +79,8 @@ if (isset($_GET['delete_id'])) {
                                 <td>{$product['description']}</td>
                                 <td><img src='{$imageSrc}' alt='{$product['title']}' width='100' height='100'></td> <!-- Displaying image -->
                                 <td>
-                                    <a class='btn-edit' href='edit_product.php?id={$product['id']}'>Edit</a> |
-                                    <a class='btn-delete' href='manage_products.php?delete_id={$product['id']}'>Delete</a>
+                                    <a class='btn-edit' href='editproduct.php?id={$product['id']}'>Edit</a> |
+                                    <a class='btn-delete' href='manageproduct.php?delete_id={$product['id']}'>Delete</a> <!-- Delete button -->
                                 </td>
                             </tr>";
                         }

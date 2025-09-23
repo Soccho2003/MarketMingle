@@ -1,17 +1,28 @@
 <?php
-include "db.php";
+session_start();
+include('db.php');
 
+// Check if the user is logged in and has the role of 'admin'
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: login.php");
+    exit();
+}
+
+// Ensure the product ID is provided
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+    $product_id = $_GET['id'];
 
-    $sql = "DELETE FROM products WHERE id=$id";
+    try {
+        // Delete the product from the database
+        $stmt = $pdo->prepare("DELETE FROM products WHERE id = ?");
+        $stmt->execute([$product_id]);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Product Deleted Successfully');window.location='sellerdashboard.php';</script>";
-    } else {
-        echo "Error: " . $conn->error;
+        // Redirect with success message
+        echo "<script>alert('Product deleted successfully!'); window.location='manage_products.php';</script>";
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
     }
 } else {
-    echo "<script>alert('No product ID provided');window.location='sellerdashboard.php';</script>";
+    echo "Product ID not specified.";
 }
 ?>

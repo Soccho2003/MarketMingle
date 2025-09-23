@@ -1,48 +1,66 @@
 <?php
-include "db.php";
+session_start();
+include("db.php");
 
-$id = $_GET['id']; // Get product ID from URL
-$result = $conn->query("SELECT * FROM products WHERE id=$id"); // Fetch product details
-$product = $result->fetch_assoc();
+// Check if the user is logged in and has the role of 'admin'
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: login.php");
+    exit();
+}
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = $_POST['title'];
-    $price = $_POST['price'];
-    $stock = $_POST['stock'];
-    $desc = $_POST['description'];
+if (isset($_GET['id'])) {
+    $product_id = $_GET['id'];
 
-    $sql = "UPDATE products 
-            SET title='$title', price='$price', stock='$stock', description='$desc' 
-            WHERE id=$id";
+    // Fetch product details by ID
+    $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
+    $stmt->execute([$product_id]);
+    $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Product Updated Successfully');window.location='seller_dashboard.php';</script>";
-    } else {
-        echo "Error: " . $conn->error;
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Get updated product details
+        $title = $_POST['title'];
+        $category = $_POST['category'];
+        $price = $_POST['price'];
+        $stock = $_POST['stock'];
+        $desc = $_POST['description'];
+
+        // Update the product in the database
+        $stmt = $pdo->prepare("UPDATE products SET title = ?, category = ?, price = ?, stock = ?, description = ? WHERE id = ?");
+        $stmt->execute([$title, $category, $price, $stock, $desc, $product_id]);
+
+        echo "<script>alert('Product updated successfully!'); window.location='admin_dashboard.php';</script>";
     }
+} else {
+    echo "Product not found.";
 }
 ?>
 
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Edit Product</title>
-  <link rel="stylesheet" href="editproduct.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product - Admin Dashboard</title>
+    <link rel="stylesheet" href="editproduct.css">  
 </head>
 <body>
-  
+    <?php include('header.php'); ?>
 
-<div class="card">
-    <h2>Edit Product</h2>
-    <form method="post">
-      <input type="text" name="title" value="<?php echo $product['title']; ?>" required>
-      <input type="number" step="0.01" name="price" value="<?php echo $product['price']; ?>" required>
-      <input type="number" name="stock" value="<?php echo $product['stock']; ?>" required>
-      <textarea name="description"><?php echo $product['description']; ?></textarea>
-      <button type="submit">Update Product</button>
-    </form>
-    <a href="sellerdashboard.php"> << Back to Dashboard</a>
-  </div>
+    <!-- Edit Product Section -->
+    <section id="edit-product">
+        <h1>Edit Product</h1>
+        <form method="POST">
+            <input type="text" name="title" placeholder="Product Title" value="<?= $product['title'] ?>" required>
+            <input type="text" name="category" placeholder="Product Category" value="<?= $product['category'] ?>" required>
+            <input type="number" step="0.01" name="price" placeholder="Price (BDT)" value="<?= $product['price'] ?>" required>
+            <input type="number" name="stock" placeholder="Stock Quantity" value="<?= $product['stock'] ?>" required>
+            <textarea name="description" placeholder="Description" required><?= $product['description'] ?></textarea>
+
+            <button type="submit">Update Product</button>
+        </form>
+        <a href="admin_dashboard.php"><< Back to Dashboard</a>
+    </section>
+
+    <?php include('footer.php'); ?>
 </body>
 </html>

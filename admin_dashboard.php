@@ -19,7 +19,7 @@
                         <li><a href="#dashboard">Dashboard</a></li>
                         <li><a href="manageproduct.php">Manage Products</a></li> 
                         <li><a href="orders_list.php">Manage Orders</a></li> <!-- Link to Orders -->
-                        <li><a href="users_list.php">Manage Users</a></li>
+                        <li><a href="manage_users.php">Manage Users</a></li>
                         <li><a href="#settings">Settings</a></li>
                     </ul>
                 </nav>
@@ -35,7 +35,7 @@
                             <p>150</p>
                         </div>
 
-                        <div class="card" onclick="window.location.href='users_list.php'">
+                        <div class="card" onclick="window.location.href='manage_users.php'">
                             <h4>Total Users</h4>
                             <p>1200</p>
                         </div>
