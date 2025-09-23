@@ -1,17 +1,20 @@
-/* Basic Reset */
+/* Reset & Base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
 }
 
-/* Header Styling */
+/* Header */
 header {
+<<<<<<< Updated upstream
     background-color: #ff5733;
     color: white;
     padding: 20px;
@@ -54,10 +57,36 @@ header .nav-links a {
 
 header .nav-links a:hover {
     text-decoration: underline;
+=======
+    background: linear-gradient(90deg, #ff5733, #ff8d72);
+    color: #fff;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+header a:hover {
+    color: #ffeaa7;
+>>>>>>> Stashed changes
 }
 
 /* Hero Section */
 #hero {
+<<<<<<< Updated upstream
     background: url('assets/images/hero-bg.jpg') no-repeat center center/cover;
     color: #CF9286;
     text-align: center;
@@ -73,91 +102,211 @@ header .nav-links a:hover {
     padding: 15px 30px;
     background-color: #ff5733;
     color: white;
+=======
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), /* dark overlay */
+                url("premium_photo-1681488262364-8aeb1b6aac56.jpeg") center/cover no-repeat;
+    color: rgb(241, 237, 237);
+    text-align: center;
+    padding: 140px 20px;
+    position: relative;
+    min-height: 500px; /* Ensure enough height like Alibaba */
+}
+
+#hero .hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+#hero h1 {
+    font-size: 55px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+#hero p {
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
+#hero .cta-btn {
+    background: white;
+    color: #ff5733;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 40px;
+    border-radius: 50px;
+>>>>>>> Stashed changes
     border: none;
-    border-radius: 30px;
-    font-size: 18px;
     cursor: pointer;
+<<<<<<< Updated upstream
 }
 
 #hero .cta-btn:hover {
     background-color: #e14e2b;
+=======
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
 }
 
-/* Featured Products Section */
+#hero .cta-btn:hover {
+    background: #ff5733;
+    color: white;
+>>>>>>> Stashed changes
+}
+
+
+/* Featured Products */
 #featured-products {
+<<<<<<< Updated upstream
     padding: 50px 0;
+=======
+    padding: 80px 40px;
+>>>>>>> Stashed changes
     text-align: center;
+    background: linear-gradient(180deg, #fff, #f9f9f9);
 }
 
 #featured-products h2 {
     font-size: 36px;
+<<<<<<< Updated upstream
     margin-bottom: 30px;
+=======
+    margin-bottom: 50px;
+    color: #2d3436;
+    font-weight: 700;
+    position: relative;
+}
+
+#featured-products h2::after {
+    content: "";
+    width: 100px;
+    height: 4px;
+    background: #ff5733;
+    display: block;
+    margin: 15px auto 0;
+    border-radius: 2px;
+>>>>>>> Stashed changes
 }
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
 
 .product-card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: all 0.4s ease;
+    position: relative;
 }
 
 .product-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
 }
 
 .product-card img {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
+    height: 260px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.08);
 }
 
 .product-card h3 {
-    margin-top: 15px;
     font-size: 20px;
+    margin: 15px 0 8px;
+    color: #2d3436;
+    font-weight: 600;
 }
 
 .product-card p {
-    color: #ff5733;
     font-size: 18px;
-    margin: 10px 0;
-}
-
-.product-card a {
-    text-decoration: none;
-    color: #ff5733;
     font-weight: bold;
+    color: #ff5733;
+    margin-bottom: 15px;
+}
+
+/* Badges (Sale/New) */
+.product-card::before {
+    content: "New";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #e74c3c;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Button */
+.btn-view-details {
     display: inline-block;
-    margin-top: 15px;
-}
-
-.product-card a:hover {
-    text-decoration: underline;
-}
-
-/* Footer Section */
-footer {
-    background-color: #333;
+    margin: 10px 0 20px;
+    padding: 12px 25px;
+    background: linear-gradient(90deg, #ff5733, #ff8d72);
     color: white;
-    padding: 20px 0;
-    text-align: center;
-}
-
-footer .footer-links a {
-    color: white;
+    border-radius: 30px;
     text-decoration: none;
-    margin: 0 15px;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
 
-footer .footer-links a:hover {
-    text-decoration: underline;
+.btn-view-details:hover {
+    background: #c0392b;
+    transform: scale(1.05);
 }
 
+/* Footer */
+footer {
+    background: #2d3436;
+    color: #fff;
+    text-align: center;
+    padding: 30px 10px;
+    margin-top: 60px;
+}
+
+footer a {
+    color: #ff8d72;
+    text-decoration: none;
+    margin: 0 12px;
+    transition: color 0.3s;
+    font-weight: 500;
+}
+
+footer a:hover {
+    color: #ffeaa7;
+}
+
+<<<<<<< Updated upstream
+=======
+/* Animations */
+@keyframes floatUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #hero h1 {
+        font-size: 36px;
+    }
+    #hero p {
+        font-size: 18px;
+    }
+    .cta-btn {
+        font-size: 16px;
+        padding: 12px 25px;
+    }
+}
+>>>>>>> Stashed changes

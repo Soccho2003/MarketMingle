@@ -24,19 +24,19 @@
         <h2>Featured Products</h2>
         <div class="product-grid">
             <div class="product-card">
-                <img src="assets/images/product1.jpg" alt="Product 1">
+                <img src="giant_204521.jpg" alt="Product 1">
                 <h3>Product 1</h3>
                 <p>BDT 200.00</p>
                 <a href="product.php?id=1" class="btn-view-details">View Details</a>
             </div>
             <div class="product-card">
-                <img src="assets/images/product2.jpg" alt="Product 2">
+                <img src="Gray-Nicolls-Astro-800-Cricket-Bat-Senior-2.webp" alt="Product 2">
                 <h3>Product 2</h3>
                 <p>BDT 250.00</p>
                 <a href="product.php?id=2" class="btn-view-details">View Details</a>
             </div>
             <div class="product-card">
-                <img src="assets/images/product3.jpg" alt="Product 3">
+                <img src="hq720.jpg" alt="Product 3">
                 <h3>Product 3</h3>
                 <p>BST300.00</p>
                 <a href="product.php?id=3" class="btn-view-details">View Details</a>
@@ -44,6 +44,6 @@
         </div>
     </section>
 
-    <?php include('includes/footer.php'); ?>
+    <?php include('footer.php'); ?>
 </body>
 </html>

@@ -1,4 +1,7 @@
-<!-- login.php -->
+<?php
+session_start(); // Start session for user authentication
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,17 +11,24 @@
     <link rel="stylesheet" href="login.css"> <!-- Link to login.css -->
 </head>
 <body>
-    <?php include('includes/header.php'); ?>
-    
+
     <!-- Login Section -->
     <section id="login-section">
         <h2>Login to Your Account</h2>
         <form action="authenticate.php" method="POST" class="login-form">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required placeholder="Enter your email">
+            <input type="email" id="email" name="email" 
+                   value="<?php echo isset($_COOKIE['user_email']) ? $_COOKIE['user_email'] : ''; ?>" 
+                   required placeholder="Enter your email">
             
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required placeholder="Enter your password">
+            
+            <!-- Remember Me checkbox -->
+            <label>
+                <input type="checkbox" name="remember_me" 
+                       <?php echo isset($_COOKIE['user_email']) ? 'checked' : ''; ?>> Remember Me
+            </label>
             
             <button type="submit" class="login-btn">Login</button>
             
@@ -28,6 +38,8 @@
         </form>
     </section>
 
-    <?php include('includes/footer.php'); ?>
+    <!-- ✅ Footer must be inside body -->
+    <?php include('footer.php'); ?>
+
 </body>
 </html>

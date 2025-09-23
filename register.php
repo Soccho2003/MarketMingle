@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="register.css"> <!-- Link to register.css -->
 </head>
 <body>
-    <?php include('includes/header.php'); ?>
+    <?php include('header.php'); ?>
 
     <!-- Register Section -->
     <section id="register-section">
@@ -34,6 +34,6 @@
         </form>
     </section>
 
-    <?php include('includes/footer.php'); ?>
+    <?php include('footer.php'); ?>
 </body>
 </html>
