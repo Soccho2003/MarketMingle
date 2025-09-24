@@ -25,6 +25,7 @@ $top_product = $result->fetch_assoc();
   <link rel="stylesheet" href="salesreport.css">
 </head>
 <body>
+  <!-- sales report page done -->
   <div class="card">
     <h2>Sales Report</h2>
     <div class="stat"> Total Sales: <strong>৳ <?php echo number_format($total_sales,2); ?></strong></div>
