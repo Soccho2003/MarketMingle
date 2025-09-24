@@ -1,7 +1,7 @@
 <?php
-session_start();  // Start the session for user authentication
+session_start();
 
-// Include the database connection
+// Include database connection
 include('db.php');
 
 // Check if form is submitted
@@ -16,31 +16,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if user exists and validate password using password_verify
     if ($user && password_verify($password, $user['password'])) {
-        // Regenerate session ID to prevent session fixation
-        session_regenerate_id(true);
-
         // Save user info in session
         $_SESSION['user_id']  = $user['id'];
         $_SESSION['username'] = $user['name'];
         $_SESSION['email']    = $user['email'];
         $_SESSION['role']     = $user['role'];
 
-        // Redirect based on the user role
-        switch ($user['role']) {
-            case 'admin':
-                header("Location: admin_dashboard.php");
-                break;
-            case 'seller':
-                header("Location: sellerdashboard.php");
-                break;
-            case 'customer':
-                header("Location: customer_dashboard.php");
-                break;
-            default:
-                echo "<script>alert('Role not recognized.'); window.location.href='login.php';</script>";
-                break;
+        // Set cookies if "Remember Me" is checked
+        if (isset($_POST['remember_me'])) {
+            // Set cookie to remember email and password for 30 days
+            setcookie('user_email', $email, time() + (30 * 24 * 60 * 60), "/"); // 30 days
+            setcookie('user_password', $password, time() + (30 * 24 * 60 * 60), "/");
+        } else {
+            // If remember me is not checked, delete cookies
+            setcookie('user_email', '', time() - 3600, "/");
+            setcookie('user_password', '', time() - 3600, "/");
         }
-        exit();
+
+        // Role-based redirection
+        if ($user['role'] === 'admin') {
+            header("Location: admin_dashboard.php");
+            exit();
+        } elseif ($user['role'] === 'seller') {
+            header("Location: sellerdashboard.php");
+            exit();
+        } elseif ($user['role'] === 'customer') {
+            header("Location: customer_dashboard.php");
+            exit();
+        } else {
+            echo "<script>alert('Role not recognized.'); window.location.href='login.php';</script>";
+        }
     } else {
         echo "<script>alert('Invalid email or password!'); window.location.href='login.php';</script>";
     }

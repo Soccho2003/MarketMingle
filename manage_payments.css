@@ -7,21 +7,25 @@
 }
 
 body {
+    display: flex;
+    height: 100vh;
     background-color: #f5f5f5;
     color: #333;
 }
 
 
 
-
-/* Manage Products Section */
-#manage-products {
-    padding: 50px;
-    text-align: center;
+/* Main Content */
+#manage-payments {
+    margin-left: 250px;  /* Push content to the right of the sidebar */
+    padding: 20px;
+    width: calc(100% - 250px);  /* Make the content take up the remaining width */
+    overflow: auto;  /* Allow content to scroll if necessary */
 }
 
-#manage-products .container {
-    width: 80%;
+/* Manage Payments Table */
+#manage-payments .container {
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -57,18 +61,6 @@ table tr:nth-child(even) {
 }
 
 /* Action Buttons */
-.btn-edit {
-    background-color: #27ae60;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    text-decoration: none;
-}
-
-.btn-edit:hover {
-    background-color: #2ecc71;
-}
-
 .btn-delete {
     background-color: #e74c3c;
     color: white;
@@ -80,5 +72,3 @@ table tr:nth-child(even) {
 .btn-delete:hover {
     background-color: #c0392b;
 }
-
-

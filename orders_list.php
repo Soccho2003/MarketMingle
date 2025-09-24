@@ -55,10 +55,26 @@ if (isset($_POST['update_status'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Orders - Admin</title>
+    <link rel="stylesheet" href="admin_dashboard.css"> 
     <link rel="stylesheet" href="orders_list.css">  <!-- External CSS file for styling -->
+    
 </head>
 <body>
-    <?php include('header.php'); ?>  <!-- Include header -->
+    <a href="logout.php" class="logout-btn">Logout</a>
+    <!-- Sidebar -->
+    <aside id="sidebar">
+        <h3>Admin Dashboard</h3>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="admin_dashboard.php">Dashboard</a></li>
+                <li><a href="manageproduct.php">Manage Products</a></li>
+                <li><a href="orders_list.php">Manage Orders</a></li> <!-- Link to Orders -->
+                <li><a href="manage_users.php">Manage Users</a></li>
+                <li><a href="manage_payments.php">Manage Payments</a></li> <!-- Added Manage Payments -->
+                <li><a href="settings.php">Settings</a></li>
+            </ul>
+        </nav>
+    </aside>
 
     <section id="manage-orders">
         <div class="container">
@@ -111,6 +127,5 @@ if (isset($_POST['update_status'])) {
         </div>
     </section>
 
-    <?php include('footer.php'); ?>  <!-- Include footer -->
 </body>
 </html>

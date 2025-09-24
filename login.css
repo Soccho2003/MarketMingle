@@ -1,38 +1,71 @@
-/* Reset some default styles */
-* {
+/* General Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
-/* Body Styling */
-body {
-    background: #f4f6f9;
+/* Header Styles */
+header {
+    background-color: #ff5733;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.header-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    height: 100vh;
+}
+
+.logo a {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+nav ul li a:hover {
+    color: #ffeaa7;
 }
 
 /* Login Section */
 #login-section {
-    background: #fff;
-    padding: 40px 30px;
+    width: 100%;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    width: 400px;
-    text-align: center;
 }
 
-/* Title */
 #login-section h2 {
-    font-size: 26px;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
     color: #333;
-    margin-bottom: 25px;
 }
 
-/* Form Styling */
 .login-form {
     display: flex;
     flex-direction: column;
@@ -41,87 +74,49 @@ body {
 
 .login-form label {
     font-size: 14px;
-    font-weight: bold;
-    text-align: left;
-    color: #444;
+    font-weight: 600;
 }
 
 .login-form input {
-    padding: 12px;
-    font-size: 16px;
+    padding: 10px;
+    font-size: 14px;
     border: 1px solid #ccc;
-    border-radius: 6px;
-    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
 }
 
-.login-form input:focus {
-    border-color: #ff5733;
-    outline: none;
-    box-shadow: 0 0 6px rgba(255, 87, 51, 0.5);
+.login-form input[type="email"], .login-form input[type="password"] {
+    width: 100%;
 }
 
-/* Checkbox */
-.login-form label input[type="checkbox"] {
-    width: auto;
-    margin-right: 8px;
+.login-form input[type="checkbox"] {
+    margin-right: 10px;
 }
 
-/* Button Styling */
 .login-btn {
-    background: #ff5733;
-    color: #fff;
+    padding: 12px;
+    background-color: #ff5733;
+    color: white;
     border: none;
-    padding: 14px;
+    border-radius: 5px;
     font-size: 16px;
-    border-radius: 6px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s;
 }
 
 .login-btn:hover {
-    background: #e14e2b;
+    background-color: #c0392b;
 }
 
-/* Signup Link */
 .signup-link {
-    margin-top: 15px;
+    text-align: center;
     font-size: 14px;
-    color: #555;
 }
 
 .signup-link a {
     color: #ff5733;
-    font-weight: bold;
     text-decoration: none;
 }
 
 .signup-link a:hover {
     text-decoration: underline;
 }
-/* Fix Remember Me alignment */
-.login-form .remember-me {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* space between checkbox and text */
-    font-size: 14px;
-    color: #555;
-    margin-top: -10px;
-    margin-bottom: 10px;
-}
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-
-
-footer {
-    margin-top: auto;
-    background: #2c3e50;
-    color: #fff;
-    text-align: center;
-    padding: 15px 0;
-}
-
-

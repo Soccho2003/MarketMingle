@@ -1,4 +1,4 @@
-/* Reset and Base Styles */
+/* Reset & Base */
 * {
     margin: 0;
     padding: 0;
@@ -7,73 +7,69 @@
 }
 
 body {
-    background-color: #f8f8f8;
+    background-color: #f5f5f5;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
-/* Container */
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-}
 
-/* Orders Section */
+/* Main Content */
 #manage-orders {
-    padding: 40px 0;
-    background-color: #fff;
+    margin-left: 250px;  /* Adjust content to avoid overlap with sidebar */
+    padding: 20px;
+    width: calc(100% - 250px);  /* Make sure the content takes up the remaining width */
+    overflow: auto;  /* Allow the content to scroll if it's too large */
 }
 
-#manage-orders h1 {
-    font-size: 28px;
-    color: #333;
+/* Manage Orders Table */
+#manage-orders .container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 36px;
     margin-bottom: 20px;
-    text-align: center;
+    color: #2c3e50;
 }
 
-/* Table Styles */
 table {
     width: 100%;
+    margin-top: 30px;
     border-collapse: collapse;
-    margin-top: 20px;
 }
 
 table th, table td {
     padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+    text-align: center;
+    border: 1px solid #ddd;
 }
 
 table th {
-    background-color: #f2f2f2;
-}
-
-table tr:hover {
-    background-color: #f9f9f9;
+    background-color: #2c3e50;
+    color: #fff;
 }
 
 table td {
-    font-size: 16px;
+    background-color: #fff;
 }
 
-/* Status Dropdown */
-select {
-    padding: 5px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
-/* Buttons */
-.btn-edit, .btn-delete {
-    padding: 6px 12px;
-    background-color: #ff5733;
+/* Action Buttons */
+.btn-delete {
+    background-color: #e74c3c;
     color: white;
-    text-decoration: none;
+    padding: 5px 10px;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    text-decoration: none;
 }
 
-.btn-edit:hover, .btn-delete:hover {
+.btn-delete:hover {
     background-color: #c0392b;
 }
+

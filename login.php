@@ -1,5 +1,6 @@
 <?php
 session_start(); // Start session for user authentication
+include('header.php')
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +23,9 @@ session_start(); // Start session for user authentication
                    required placeholder="Enter your email">
             
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required placeholder="Enter your password">
+            <input type="password" id="password" name="password" 
+                   value="<?php echo isset($_COOKIE['user_password']) ? $_COOKIE['user_password'] : ''; ?>" 
+                   required placeholder="Enter your password">
             
             <!-- Remember Me checkbox -->
             <label>
@@ -38,7 +41,6 @@ session_start(); // Start session for user authentication
         </form>
     </section>
 
-    <!-- ✅ Footer must be inside body -->
     <?php include('footer.php'); ?>
 
 </body>

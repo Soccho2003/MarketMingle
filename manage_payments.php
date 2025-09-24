@@ -1,8 +1,8 @@
 <?php
-session_start();  // Start session for user authentication
+session_start();
 
-// Include database connection
-include("db.php");
+// Include the database connection
+include('db.php');
 
 // Check if the user is logged in and has the role of 'admin'
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
@@ -10,26 +10,25 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     exit();
 }
 
-// Fetch all users
-$stmt = $pdo->prepare("SELECT * FROM users");
-$stmt->execute();
-$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Handle user deletion
+// Handle payment deletion
 if (isset($_GET['delete_id'])) {
     $delete_id = $_GET['delete_id'];
 
     try {
         // Prepare delete query
-        $stmt = $pdo->prepare("DELETE FROM users WHERE id = ?");
+        $stmt = $pdo->prepare("DELETE FROM payments WHERE id = ?");
         $stmt->execute([$delete_id]);
 
-        // Redirect with success message
-        echo "<script>alert('User deleted successfully!'); window.location='manage_users.php';</script>";
+        echo "<script>alert('Payment deleted successfully!'); window.location='manage_payments.php';</script>";
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
 }
+
+// Fetch all payment details
+$stmt = $pdo->prepare("SELECT * FROM payments");
+$stmt->execute();
+$payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -37,10 +36,9 @@ if (isset($_GET['delete_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Users - Admin</title>
+    <title>Manage Payments - Admin</title>
+    <link rel="stylesheet" href="manage_payments.css">  
     <link rel="stylesheet" href="admin_dashboard.css"> 
-    <link rel="stylesheet" href="manage_user.css"> 
-     
 </head>
 <body>
     <a href="logout.php" class="logout-btn">Logout</a>
@@ -59,37 +57,36 @@ if (isset($_GET['delete_id'])) {
         </nav>
     </aside>
 
-    <section id="manage-users">
+    <section id="manage-payments">
         <div class="container">
-            <h1>Manage Users</h1>
+            <h1>Manage Payments</h1>
 
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
+                        <th>Order ID</th>
+                        <th>Payment Method</th>
+                        <th>Status</th>
+                        <th>Amount</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    if ($users) {
-                        foreach ($users as $user) {
+                    if ($payments) {
+                        foreach ($payments as $payment) {
                             echo "<tr>
-                                <td>{$user['id']}</td>
-                                <td>{$user['name']}</td>
-                                <td>{$user['email']}</td>
-                                <td>{$user['role']}</td>
+                                <td>{$payment['order_id']}</td>
+                                <td>{$payment['payment_method']}</td>
+                                <td>{$payment['status']}</td>
+                                <td>BDT {$payment['amount']}</td>
                                 <td>
-                                    <a class='btn-edit' href='edit_user.php?id={$user['id']}'>Edit</a> |
-                                    <a class='btn-delete' href='manage_users.php?delete_id={$user['id']}'>Delete</a> <!-- Delete button -->
+                                    <a class='btn-delete' href='manage_payments.php?delete_id={$payment['id']}'>Delete</a>
                                 </td>
                             </tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='5'>No users available</td></tr>";
+                        echo "<tr><td colspan='5'>No payments available</td></tr>";
                     }
                     ?>
                 </tbody>
@@ -97,5 +94,6 @@ if (isset($_GET['delete_id'])) {
         </div>
     </section>
 
+    <?php include('footer.php'); ?> <!-- Include footer -->
 </body>
 </html>
