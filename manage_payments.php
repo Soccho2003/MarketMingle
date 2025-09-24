@@ -94,6 +94,5 @@ $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </section>
 
-    <?php include('footer.php'); ?> <!-- Include footer -->
 </body>
 </html>
