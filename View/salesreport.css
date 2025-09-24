@@ -1,91 +1,65 @@
-/* General Styles for Card */
+/* ====== Global ====== */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+/* ====== Card ====== */
 .card {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 25px;
+  margin: 25px auto;
+  max-width: 650px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-.card h2 {
-    font-size: 24px;
-    color: #333;
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #F57224; 
+  border-left: 5px solid #F57224;
+  padding-left: 10px;
 }
 
+/* ====== Box ====== */
 .stat {
-    font-size: 18px;
-    margin: 10px 0;
+  padding: 12px 15px;
+  margin: 12px 0;
+  background: #fff7f2;
+  border-left: 5px solid #F57224;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #444;
+  transition: background 0.2s;
 }
-
-.stat strong {
-    font-size: 20px;
-    color: #27ae60;
-}
-
-/* Table Styles */
-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-}
-
-table th, table td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ddd;
-}
-
-table th {
-    background-color: #2c3e50;
-    color: #fff;
-}
-
-table td {
-    background-color: #fff;
-}
-
-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-table tr:hover {
-    background-color: #eaeaea;
+.stat:hover {
+  background: #ffe8db;
 }
 
 
-/* Logout Button */
-.logout-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background-color: #ff5733;
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+a {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  background: #F57224;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s;
 }
-
-.logout-btn:hover {
-    background-color: #c0392b; /* Darker shade on hover */
-}
-
-
-/* Logout Button */
-.back-btn {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 10px 20px;
-    background-color: #ff5733;
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.back-btn:hover {
-    background-color: #c0392b; /* Darker shade on hover */
+a:hover {
+  background: #d95a14;
 }

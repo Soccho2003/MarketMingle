@@ -1,34 +1,52 @@
 <?php
-include ('../Model/sellerprofile.php');
+include "db.php";
+$result = $conn->query("SELECT * FROM sellerprofile WHERE id=1");
+$profile = $result->fetch_assoc();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $shop_name = $_POST['shop_name'];
+    $address = $_POST['address'];
+
+    if ($profile) {
+        // Update existing
+        $sql = "UPDATE sellerprofile 
+                SET name='$name', email='$email', phone='$phone', shop_name='$shop_name', address='$address' 
+                WHERE id=1";
+    } else {
+        // Insert new
+        $sql = "INSERT INTO sellerprofile (id, name, email, phone, shop_name, address) 
+                VALUES (1, '$name', '$email', '$phone', '$shop_name', '$address')";
+    }
+
+    if ($conn->query($sql) === TRUE) {
+        echo "<script>alert('Profile Updated Successfully');window.location='sellerprofileview.php';</script>";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+}
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seller Profile</title>
-    <link rel="stylesheet" href="sellerprofile.css">
+  <title>Seller Profile</title>
+  <link rel="stylesheet" href="sellerprofile.css">
 </head>
 <body>
-
-
-     <a href="logout.php" class="logout-btn">Logout</a>
-    <a href="../View/sellerdashboard.php" class="back-btn">Back</a>
-    <div class="card">
-        <h2>Seller Profile</h2>
-        <form method="post">
-            <!-- Show current profile info -->
-            <input type="text" name="name" placeholder="Full Name" value="<?php echo $user['name'] ?? ''; ?>" required>
-            <input type="email" name="email" placeholder="Email" value="<?php echo $user['email'] ?? ''; ?>" required>
-            
-            <!-- Password Fields for changing the password -->
-            <input type="password" name="new_password" placeholder="New Password">
-            <input type="password" name="confirm_password" placeholder="Confirm Password">
-            
-            <button type="submit">Save Profile</button>
-        </form>
-    </div>
-
+  <div class="card">
+    <h2>Seller Profile</h2>
+    <form method="post">
+      <input type="text" name="name" placeholder="Full Name" value="<?php echo $profile['name'] ?? ''; ?>" required>
+      <input type="email" name="email" placeholder="Email" value="<?php echo $profile['email'] ?? ''; ?>" required>
+      <input type="text" name="phone" placeholder="Phone" value="<?php echo $profile['phone'] ?? ''; ?>" required>
+      <input type="text" name="shop_name" placeholder="Shop Name" value="<?php echo $profile['shop_name'] ?? ''; ?>" required>
+      <textarea name="address" placeholder="Shop Address"><?php echo $profile['address'] ?? ''; ?></textarea>
+      <button type="submit">Save Profile</button>
+    </form>
+    <a href="sellerdashboard.php"> << Back to Dashboard</a>
+  </div>
 </body>
 </html>

@@ -1,0 +1,89 @@
+/* Global */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #fff5f0, #ffe4d6);
+  padding: 40px;
+  color: #333;
+}
+
+/* Profile Card */
+.card {
+  background: #fff;
+  padding: 30px;
+  max-width: 600px;
+  margin: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+h2 {
+  color: #F57224; /* Daraz orange */
+  margin-bottom: 25px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Profile Items */
+.profile-item {
+  padding: 12px 15px;
+  margin: 8px 0;
+  background: #fff8f5;
+  border-left: 5px solid #F57224;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.profile-item:hover {
+  transform: translateX(5px);
+  background: #ffe9dc;
+}
+
+.profile-item strong {
+  color: #444;
+  width: 140px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+/* Buttons */
+.btn, .btn-link {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+/* Green button */
+.btn {
+  background: #28a745;
+  color: #fff;
+}
+.btn:hover {
+  background: #218838;
+  transform: translateY(-2px);
+}
+
+/* Orange button */
+.btn-link {
+  background: #ff6f00;
+  color: #fff;
+}
+.btn-link:hover {
+  background: #e65c00;
+  transform: translateY(-2px);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
