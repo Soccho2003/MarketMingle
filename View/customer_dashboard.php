@@ -1,13 +1,5 @@
 <?php
-session_start();  // Start session for user authentication
-
-// Include database connection
-include('db.php');
-
-// Fetch all products from the database
-$stmt = $pdo->prepare("SELECT * FROM products");
-$stmt->execute();
-$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+include('../Model/customer_dashboard.php');
 ?>
 
 <!DOCTYPE html>
@@ -19,16 +11,14 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="customer_dashboard.css"> <!-- External CSS file for styling -->
 </head>
 <body>
-    <?php include('header.php'); ?> <!-- Include header -->
-
+    <a href="logout.php" class="logout-btn">Logout</a>
     <section id="product-section">
         <div class="container">
             <h1>All Products</h1>
 
             <!-- View Cart Button -->
-            <div class="view-cart-btn">
-                <a href="view_cart.php" class="btn">View Cart</a> <!-- Button to go to View Cart page -->
-            </div>
+             <a href="view_cart.php" class="view-cart-btn">View Cart</a>
+           
 
             <!-- Product Grid -->
             <div class="product-grid">
@@ -57,6 +47,5 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </section>
 
-    <?php include('footer.php'); ?> <!-- Include footer -->
 </body>
 </html>

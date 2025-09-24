@@ -1,65 +1,50 @@
 <?php
-include "db.php";
+session_start();
 
-// Create seller_profile table if not exists
-$conn->query("CREATE TABLE IF NOT EXISTS sellerprofile (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
-    email VARCHAR(100),
-    phone VARCHAR(20),
-    shop_name VARCHAR(100),
-    address TEXT
-)");
+// Check if the user is logged in and has the role of 'seller'
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'seller') {
+    header("Location: ../View/login.php");
+    exit();
+}
 
-// Fetch profile (assuming only 1 seller for demo)
-$result = $conn->query("SELECT * FROM sellerprofile WHERE id=1");
-$profile = $result->fetch_assoc();
+// Include database connection
+include("db.php");
 
+// Fetch user data for editing
+$user_id = $_SESSION['user_id']; // Assuming user ID is stored in session
+
+// Fetch user from the database
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->execute([$user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Update user data
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $shop_name = $_POST['shop_name'];
-    $address = $_POST['address'];
+    $new_password = $_POST['new_password'];
+    $confirm_password = $_POST['confirm_password'];
 
-    if ($profile) {
-        // Update existing
-        $sql = "UPDATE sellerprofile 
-                SET name='$name', email='$email', phone='$phone', shop_name='$shop_name', address='$address' 
-                WHERE id=1";
-    } else {
-        // Insert new
-        $sql = "INSERT INTO sellerprofile (id, name, email, phone, shop_name, address) 
-                VALUES (1, '$name', '$email', '$phone', '$shop_name', '$address')";
-    }
+    // If password fields are filled, update the password
+    if (!empty($new_password) && !empty($confirm_password)) {
+        if ($new_password === $confirm_password) {
+            // Hash new password
+            $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+            
+            // Update password
+            $stmt = $pdo->prepare("UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?");
+            $stmt->execute([$name, $email, $hashed_password, $user_id]);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Profile Updated Successfully');window.location='sellerprofile.php';</script>";
+            echo "<script>alert('Profile and password updated successfully!'); window.location='../View/sellerprofile.php';</script>";
+        } else {
+            echo "<script>alert('Passwords do not match!');</script>";
+        }
     } else {
-        echo "Error: " . $conn->error;
+        // Update profile without password change
+        $stmt = $pdo->prepare("UPDATE users SET name = ?, email = ? WHERE id = ?");
+        $stmt->execute([$name, $email, $user_id]);
+
+        echo "<script>alert('Profile updated successfully!'); window.location='../View/sellerprofile.php';</script>";
     }
 }
 ?>
-
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Seller Profile</title>
-  <link rel="stylesheet" href="sellerprofile.css">
-</head>
-<body>
-  <div class="card">
-    <h2>Seller Profile</h2>
-    <form method="post">
-      <input type="text" name="name" placeholder="Full Name" value="<?php echo $profile['name'] ?? ''; ?>" required>
-      <input type="email" name="email" placeholder="Email" value="<?php echo $profile['email'] ?? ''; ?>" required>
-      <input type="text" name="phone" placeholder="Phone" value="<?php echo $profile['phone'] ?? ''; ?>" required>
-      <input type="text" name="shop_name" placeholder="Shop Name" value="<?php echo $profile['shop_name'] ?? ''; ?>" required>
-      <textarea name="address" placeholder="Shop Address"><?php echo $profile['address'] ?? ''; ?></textarea>
-      <button type="submit">Save Profile</button>
-    </form>
-    <a href="sellerdashboard.php"> << Back to Dashboard</a>
-  </div>
-</body>
-</html>

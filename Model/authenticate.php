@@ -35,19 +35,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Role-based redirection
         if ($user['role'] === 'admin') {
-            header("Location: admin_dashboard.php");
+            header("Location: ../View/admin_dashboard.php");
             exit();
         } elseif ($user['role'] === 'seller') {
-            header("Location: sellerdashboard.php");
+            header("Location: ../View/sellerdashboard.php");
             exit();
         } elseif ($user['role'] === 'customer') {
-            header("Location: customer_dashboard.php");
+            header("Location: ../View/customer_dashboard.php");
             exit();
         } else {
-            echo "<script>alert('Role not recognized.'); window.location.href='login.php';</script>";
+            echo "<script>alert('Role not recognized.'); window.location.href='../View/login.php';</script>";
         }
     } else {
-        echo "<script>alert('Invalid email or password!'); window.location.href='login.php';</script>";
+        echo "<script>alert('Invalid email or password!'); window.location.href='../View/login.php';</script>";
     }
 }
 ?>

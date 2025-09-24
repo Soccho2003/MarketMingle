@@ -1,19 +1,6 @@
 <?php
-session_start();  // Ensure the session is started before any output
+include('../Model/sellerdashboard.php');
 
-// Include database connection
-include('db.php');
-
-// Check if the user is logged in and has the role of 'seller'
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'seller') {
-    header("Location: login.php");
-    exit();
-}
-
-// Fetch seller products
-$stmt = $pdo->prepare("SELECT * FROM products WHERE seller_id = ?");
-$stmt->execute([$_SESSION['user_id']]);
-$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -26,7 +13,11 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <h1>Seller Dashboard</h1>
+    <a href="logout.php" class="logout-btn">Logout</a>
+    <a href="sellerprofile.php" class="profile-btn">Profile</a>
+    <a href="salesreport.php" class="sales-btn">Sales</a>
     <a class="btn" href="addproduct.php">+ Add Product</a>
+    <a class="btn" href="addvoucher.php">+ Add Voucher</a> <!-- Link to Add Voucher -->
 
     <!-- Products Section -->
     <div class="card">
@@ -52,13 +43,40 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td>{$p['description']}</td>
                             <td><img src='{$imageSrc}' alt='{$p['title']}' width='100' height='100'></td>
                             <td>
-                                <a class='btn' href='editproduct.php?id={$p['id']}'>Edit</a>
+                                <a class='btn' href='s_editproduct.php?id={$p['id']}'>Edit</a>
                                 <a class='btn btn-red' href='deleteproduct.php?id={$p['id']}'>Delete</a>
                             </td>
                         </tr>";
                 }
             } else {
                 echo "<tr><td colspan='7'>No products available</td></tr>";
+            }
+            ?>
+        </table>
+    </div>
+
+    <!-- Vouchers Section -->
+    <div class="card">
+        <h2>Your Vouchers</h2>
+        <table>
+            <tr>
+                <th>Voucher Code</th><th>Discount (%)</th><th>Expiry Date</th><th>Actions</th>
+            </tr>
+            <?php
+            if ($vouchers) {
+                foreach ($vouchers as $voucher) {
+                    echo "<tr>
+                            <td>{$voucher['code']}</td>
+                            <td>{$voucher['discount']}</td>
+                            <td>{$voucher['expiry_date']}</td>
+                            <td>
+                                <a class='btn' href='editvoucher.php?id={$voucher['id']}'>Edit</a>
+                                <a class='btn btn-red' href='deletevoucher.php?id={$voucher['id']}'>Delete</a>
+                            </td>
+                        </tr>";
+                }
+            } else {
+                echo "<tr><td colspan='4'>No vouchers available</td></tr>";
             }
             ?>
         </table>

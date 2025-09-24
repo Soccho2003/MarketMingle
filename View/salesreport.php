@@ -1,21 +1,6 @@
 <?php
-include "db.php";
-
-// Total Sales
-$result = $conn->query("SELECT SUM(total) AS total_sales FROM orders");
-$row = $result->fetch_assoc();
-$total_sales = $row['total_sales'] ?? 0;
-
-// Total Orders
-$result = $conn->query("SELECT COUNT(*) AS total_orders FROM orders");
-$row = $result->fetch_assoc();
-$total_orders = $row['total_orders'] ?? 0;
-
-// Best Selling Product
-$result = $conn->query("SELECT p.title, SUM(o.quantity) AS sold_qty FROM orders o JOIN products p ON o.product_id=p.id  GROUP BY o.product_id  ORDER BY sold_qty DESC LIMIT 1");
-$top_product = $result->fetch_assoc();
+include ("../Model/salesreport.php");
 ?>
-
 
 <!doctype html>
 <html>
@@ -25,16 +10,52 @@ $top_product = $result->fetch_assoc();
   <link rel="stylesheet" href="salesreport.css">
 </head>
 <body>
+
+  <a href="logout.php" class="logout-btn">Logout</a>
+  <a href="../View/sellerdashboard.php" class="back-btn">Back</a>
+  
   <div class="card">
     <h2>Sales Report</h2>
-    <div class="stat"> Total Sales: <strong>৳ <?php echo number_format($total_sales,2); ?></strong></div>
+    <div class="stat"> Total Sales: <strong>৳ <?php echo number_format($total_sales, 2); ?></strong></div>
     <div class="stat"> Total Orders: <strong><?php echo $total_orders; ?></strong></div>
     <div class="stat"> Best Selling Product: 
       <strong>
-        <?php echo $top_product ? $top_product['title']." (".$top_product['sold_qty']." sold)" : "No sales yet"; ?>
+        <?php echo $top_product ? $top_product['product_name']." (৳ ".$top_product['total_sales'].")" : "No sales yet"; ?>
       </strong>
     </div>
-    <a href="sellerdashboard.php"><< Back to Dashboard</a>
   </div>
+
+  <div class="card">
+    <h2>Payments</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Payment Method</th>
+          <th>Status</th>
+          <th>Amount</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        if ($payments) {
+          foreach ($payments as $payment) {
+            echo "<tr>
+                    <td>{$payment['order_id']}</td>
+                    <td>{$payment['payment_method']}</td>
+                    <td>{$payment['status']}</td>
+                    <td>৳ {$payment['amount']}</td>
+                    <td>{$payment['created_at']}</td>
+                  </tr>";
+          }
+        } else {
+          echo "<tr><td colspan='5'>No payments available</td></tr>";
+        }
+        ?>
+      </tbody>
+    </table>
+  </div>
+
 </body>
 </html>

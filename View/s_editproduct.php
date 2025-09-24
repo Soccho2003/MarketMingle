@@ -1,5 +1,5 @@
 <?php
-include ('../Model/editproduct.php');
+include ('../Model/s_editproduct.php');
 ?>
 
 <!DOCTYPE html>
@@ -15,22 +15,8 @@ include ('../Model/editproduct.php');
 
     <!-- Edit Product Section -->
     <a href="logout.php" class="logout-btn">Logout</a>
+    <a href="sellerdashboard.php" class="back-btn">Back</a>
 
-    <section id="admin-dashboard">
-        <div class="dashboard-container">
-            <aside id="sidebar">
-                <h3>Admin Dashboard</h3>
-                <nav class="sidebar-nav">
-                    <ul>
-                        <li><a href="admin_dashboard.php">Dashboard</a></li>
-                        <li><a href="manageproduct.php">Manage Products</a></li>
-                        <li><a href="orders_list.php">Manage Orders</a></li> <!-- Link to Orders -->
-                        <li><a href="manage_users.php">Manage Users</a></li>
-                        <li><a href="manage_payments.php">Manage Payments</a></li> <!-- Added Manage Payments -->
-                        <li><a href="settings.php">Settings</a></li>
-                    </ul>
-                </nav>
-            </aside>
 
     <section id="edit-product">
         <h1>Edit Product</h1>

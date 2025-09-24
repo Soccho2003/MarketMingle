@@ -1,29 +1,5 @@
 <?php
-session_start();  // Start session for user authentication
-
-// Include database connection
-include('db.php');
-
-// Check if product ID is passed in the URL
-if (isset($_GET['id'])) {
-    $product_id = $_GET['id'];
-
-    // Prepare the query to fetch product details by ID
-    $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
-    $stmt->execute([$product_id]);
-
-    // Fetch the product data
-    $product = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // Check if the product exists
-    if (!$product) {
-        echo "Product not found.";
-        exit();
-    }
-} else {
-    echo "Product ID not specified.";
-    exit();
-}
+include('../Model/product_detail.php');
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +11,9 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="product_detail.css"> <!-- Link to the external CSS -->
 </head>
 <body>
-    <?php include('header.php'); ?> <!-- Include header -->
+    <a href="logout.php" class="logout-btn">Logout</a>
+    <a href="../View/customer_dashboard.php" class="back-btn">Back</a>
+
 
     <section id="product-detail">
         <div class="container">
@@ -67,6 +45,5 @@ if (isset($_GET['id'])) {
         </div>
     </section>
 
-    <?php include('footer.php'); ?> <!-- Include footer -->
 </body>
 </html>

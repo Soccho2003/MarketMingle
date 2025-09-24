@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if passwords match
     if ($password !== $confirmPassword) {
-        echo "<script>alert('Passwords do not match.'); window.location.href='register.php';</script>";
+        echo "<script>alert('Passwords do not match.'); window.location.href='../View/register.php';</script>";
         exit();
     }
 
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
         $stmt->execute([$name, $email, $hashedPassword, $role]);  // Use the selected role
 
-        echo "<script>alert('Registration successful! Please login.'); window.location.href='login.php';</script>";
+        echo "<script>alert('Registration successful! Please login.'); window.location.href='../View/login.php';</script>";
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }

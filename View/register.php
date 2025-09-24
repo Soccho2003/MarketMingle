@@ -13,7 +13,7 @@
     <!-- Register Section -->
     <section id="register-section">
         <h2>Create Your Account</h2>
-        <form action="register_user.php" method="POST" class="register-form">
+        <form action="../Model/register_user.php" method="POST" class="register-form">
             <label for="name">Full Name:</label>
             <input type="text" id="name" name="name" required placeholder="Enter your full name">
             

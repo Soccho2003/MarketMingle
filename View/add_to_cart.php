@@ -33,7 +33,7 @@ if (isset($_POST['product_id'], $_POST['quantity'])) {
             'total_price' => $product['price'] * $quantity,
         ];
 
-        echo "<script>alert('Product added to cart'); window.location='product_detail.php?id={$product['id']}';</script>";
+        echo "<script>alert('Product added to cart'); window.location='../View/product_detail.php?id={$product['id']}';</script>";
     } else {
         echo "Product not found.";
     }

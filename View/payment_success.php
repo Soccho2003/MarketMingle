@@ -1,12 +1,5 @@
 <?php
-session_start();
-
-// Check if the user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
-    exit();
-}
-
+include ('../Model/payment_success.php');
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +11,6 @@ if (!isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="payment_success.css">
 </head>
 <body>
-    <?php include('header.php'); ?> <!-- Include header -->
 
     <section id="payment-success">
         <h1>Payment Successful</h1>
@@ -26,6 +18,5 @@ if (!isset($_SESSION['user_id'])) {
         <a href="customer_dashboard.php" class="btn">Back to Dashboard</a>
     </section>
 
-    <?php include('footer.php'); ?> <!-- Include footer -->
 </body>
 </html>

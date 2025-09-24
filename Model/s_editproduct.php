@@ -5,7 +5,7 @@ session_start();  // Start session for user authentication
 include('db.php');
 
 // Check if the user is logged in and has the role of 'admin'
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'seller') {
     header("Location: ../View/login.php");
     exit();
 }
@@ -41,7 +41,7 @@ if (isset($_GET['id'])) {
             $stmt->execute([$title, $category, $price, $stock, $desc, $product_id]);
         }
 
-        echo "<script>alert('Product updated successfully!'); window.location='../View/manageproduct.php';</script>";
+        echo "<script>alert('Product updated successfully!'); window.location='../View/sellerdashboard.php';</script>";
     }
 } else {
     echo "Product not found.";

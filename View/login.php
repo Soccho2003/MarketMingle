@@ -16,7 +16,7 @@ include('header.php')
     <!-- Login Section -->
     <section id="login-section">
         <h2>Login to Your Account</h2>
-        <form action="authenticate.php" method="POST" class="login-form">
+        <form action="../Model/authenticate.php" method="POST" class="login-form">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" 
                    value="<?php echo isset($_COOKIE['user_email']) ? $_COOKIE['user_email'] : ''; ?>" 
