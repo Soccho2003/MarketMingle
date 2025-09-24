@@ -57,11 +57,12 @@ if (isset($_GET['id'])) {
                 <p class="stock">Stock: <?php echo $product['stock']; ?> available</p>
 
                 <!-- Add to Cart Button -->
-                <form action="add_to_cart.php" method="POST">
-                    <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-                    <input type="number" name="quantity" min="1" value="1" required>
-                    <button type="submit" class="add-to-cart-btn">Add to Cart</button>
-                </form>
+               <form action="add_to_cart.php" method="POST">
+    <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">  <!-- Hidden field for product ID -->
+    <input type="number" name="quantity" min="1" value="1" required>
+    <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+</form>
+
             </div>
         </div>
     </section>

@@ -16,25 +16,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if user exists and validate password using password_verify
     if ($user && password_verify($password, $user['password'])) {
+        // Regenerate session ID to prevent session fixation
+        session_regenerate_id(true);
+
         // Save user info in session
         $_SESSION['user_id']  = $user['id'];
         $_SESSION['username'] = $user['name'];
         $_SESSION['email']    = $user['email'];
         $_SESSION['role']     = $user['role'];
 
-        // Role-based redirection
-        if ($user['role'] === 'admin') {
-            header("Location: admin_dashboard.php");
-            exit();
-        } elseif ($user['role'] === 'seller') {
-            header("Location: sellerdashboard.php");
-            exit();
-        } elseif ($user['role'] === 'customer') {
-            header("Location: customer_dashboard.php");
-            exit();
-        } else {
-            echo "<script>alert('Role not recognized.'); window.location.href='login.php';</script>";
+        // Redirect based on the user role
+        switch ($user['role']) {
+            case 'admin':
+                header("Location: admin_dashboard.php");
+                break;
+            case 'seller':
+                header("Location: sellerdashboard.php");
+                break;
+            case 'customer':
+                header("Location: customer_dashboard.php");
+                break;
+            default:
+                echo "<script>alert('Role not recognized.'); window.location.href='login.php';</script>";
+                break;
         }
+        exit();
     } else {
         echo "<script>alert('Invalid email or password!'); window.location.href='login.php';</script>";
     }

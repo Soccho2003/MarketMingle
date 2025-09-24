@@ -4,9 +4,15 @@ include('db.php');
 
 // Check if the product id and quantity are passed
 if (isset($_POST['product_id'], $_POST['quantity'])) {
-    $product_id = $_POST['product_id'];
-    $quantity = $_POST['quantity'];
-    
+    $product_id = $_POST['product_id'];  // Get the product id from the form
+    $quantity = $_POST['quantity'];      // Get the quantity from the form
+
+    // Validate product ID
+    if (empty($product_id)) {
+        echo "Product ID is missing.";
+        exit();  // Stop the process if no product ID is provided
+    }
+
     // Get product details from the database
     $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
     $stmt->execute([$product_id]);
@@ -31,5 +37,7 @@ if (isset($_POST['product_id'], $_POST['quantity'])) {
     } else {
         echo "Product not found.";
     }
+} else {
+    echo "Product ID or Quantity not provided.";
 }
 ?>

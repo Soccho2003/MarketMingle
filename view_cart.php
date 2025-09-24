@@ -3,7 +3,7 @@ session_start();
 
 // Check if the cart exists in the session
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
-    echo "<script>alert('Your cart is empty.'); window.location='index.php';</script>";
+    echo "<script>alert('Your cart is empty.'); window.location='customer_dashboard.php';</script>";
     exit();
 }
 
@@ -17,6 +17,26 @@ include('db.php');  // Include the database connection
 
 // Initialize total price
 $totalPrice = 0;
+
+// Handle item deletion
+if (isset($_GET['delete_id'])) {
+    $delete_id = $_GET['delete_id'];
+
+    // Loop through the cart and remove the item with the matching ID
+    foreach ($_SESSION['cart'] as $index => $item) {
+        if ($item['product_id'] == $delete_id) {
+            unset($_SESSION['cart'][$index]);
+            break; // Stop once the item is removed
+        }
+    }
+
+    // Re-index the array to prevent issues with gaps in the array keys
+    $_SESSION['cart'] = array_values($_SESSION['cart']);
+
+    // Redirect to view cart page after deletion
+    header("Location: view_cart.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +60,7 @@ $totalPrice = 0;
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total</th>
+                    <th>Actions</th> <!-- For delete button -->
                 </tr>
             </thead>
             <tbody>
@@ -54,6 +75,7 @@ $totalPrice = 0;
                             <td>BDT {$item['price']}</td>
                             <td>{$item['quantity']}</td>
                             <td>BDT {$productTotal}</td>
+                            <td><a href='view_cart.php?delete_id={$item['product_id']}'>Delete</a></td> <!-- Delete link -->
                           </tr>";
                 }
                 ?>
